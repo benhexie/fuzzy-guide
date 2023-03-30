@@ -1,0 +1,39 @@
+{
+    "name": "fuzzy-guide",
+    "version": "1.0.0",
+    "description": "Not your regular exam guide :)",
+    "manifest_version": 3,
+    "author": "Anonymous",
+    "icons": {
+        "16": "icons/logo16.png",
+        "32": "icons/logo32.png",
+        "64": "icons/logo64.png",
+        "128": "icons/logo128.png"
+    },
+    "permissions": ["storage", "tabs"],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": [
+                "scripts/content.js"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "assets/logo.png",
+                "assets/logo2.png"
+            ],
+            "matches": ["<all_urls>"]
+        }
+    ],
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "Fuzzy Guide"
+    }
+  }
+  

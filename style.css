@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #1A1A1A;
+    --primary-color: #C80000;
+    --secondary-color: #FAFF00;
+    --red-highlight: #FF0000;
+}
+
+body {
+    background-color: var(--bg-color);
+    padding: 7px;
+    height: 350px;
+    width: 320px;
+}
+
+iframe {
+    border: none;
+    height: 100%;
+}

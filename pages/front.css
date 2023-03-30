@@ -1,0 +1,84 @@
+:root {
+    --bg-color: #1A1A1A;
+    --primary-color: #C80000;
+    --secondary-color: #FAFF00;
+    --red-highlight: #FF0000;
+}
+
+#front {
+    color: white;
+    position: relative;
+    height: 100%;
+}
+
+p {
+    font-size: 15px;
+}
+
+.span-focus {
+    color: var(--red-highlight);
+}
+
+.span-fuzzy {
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.desc {
+    white-space: pre-wrap;
+}
+
+#activation-btn {
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#activation-btn:hover {
+    background-color: black;
+}
+
+#activation-form {
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+}
+
+#activation-text {
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    text-indent: 5px;
+    outline: none;
+}
+
+.activation__container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.signup-message {
+    margin-top: 0;
+}
+
+.signup:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.logo__container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.logo {
+    height: 24px;
+}

@@ -1,0 +1,10 @@
+{
+  "name": "fuzzy-guide",
+  "version": "1.0.0",
+  "description": "A beautiful exam guide.",
+  "main": "index.html",
+  "repository": "https://github.com/benhexie/fuzzy-guide.git",
+  "author": "Benedict Gabriel <benedictgabriel73@gmail.com>",
+  "license": "Apache License 2.0",
+  "private": true
+}
