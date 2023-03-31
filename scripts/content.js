@@ -99,6 +99,10 @@ function pushNotification(message) {
           #${circleName} > i:nth-child(2) {
             display: ${!squareShow ? "inline" : "none"}
           }
+
+          #${circleName}:hover + div {
+            opacity: 1;
+          }
   
           #${circleName} + div {
               position: absolute;
