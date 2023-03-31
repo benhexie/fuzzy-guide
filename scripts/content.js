@@ -41,8 +41,8 @@ function getAllText() {
 let squareShow = false;
 function pushNotification(message) {
   popup.innerHTML = "";
-  const circleName = generatePopupName();
   if (!message.toLowerCase().includes("no questions found")) {
+    const circleName = generatePopupName();
     const popup = document.getElementById(popupName);
     popup.insertAdjacentHTML(
       "beforeend",
@@ -105,50 +105,50 @@ function pushNotification(message) {
           }
   
           #${circleName} + div {
-              position: absolute;
-              bottom: 50px !important;
-              right: 50px !important;
-              width: fit-content;
-              height: fit-content;
-              border-radius: 10px;
-              background-color: white;
-              border: solid 1px #C80000;
-              opacity: 0.3;
-              direction: rtl;
-              padding: 3px;
-              pointer-events: all;
-              cursor: default;
-              display: ${squareShow ? "inline" : "none"};
+            position: absolute;
+            bottom: 50px !important;
+            right: 50px !important;
+            width: fit-content;
+            height: fit-content;
+            border-radius: 10px;
+            background-color: white;
+            border: solid 1px #C80000;
+            opacity: 0.3;
+            direction: rtl;
+            padding: 3px;
+            pointer-events: all;
+            cursor: default;
+            display: ${squareShow ? "inline" : "none"};
           }
   
           #${circleName} + div:hover {
-              opacity: 1;
-              z-index: 2;
+            opacity: 1;
+            z-index: 2;
           }
   
           #${circleName} + div > textarea {
-              text-align: end;
-              resize: none;
-              padding: 10px;
-              background-color: inherit;
-              border: none;
-              border-radius: 10px;
-              color: black;
-              width: 300px !important;
-              height: 100px !important;
-              overflow-y: auto;
-              font-size: medium;
+            text-align: end;
+            resize: none;
+            padding: 10px;
+            background-color: inherit;
+            border: none;
+            border-radius: 10px;
+            color: black;
+            width: 300px !important;
+            height: 100px !important;
+            overflow-y: auto;
+            font-size: medium;
           }
   
           #${circleName} + div::-webkit-scrollbar {
-              background-color: inherit;
-              border-radius: 20px;
-              width: 10px;
+            background-color: inherit;
+            border-radius: 20px;
+            width: 10px;
           }
   
           #${circleName} + div::-webkit-scrollbar-thumb {
-              background-color: #C80000;
-              border-radius: 20px;
+            background-color: #C80000;
+            border-radius: 20px;
           }
   
       </style>
