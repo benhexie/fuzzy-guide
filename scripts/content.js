@@ -1,6 +1,6 @@
 const popupName = generatePopupName();
 const popup = document.createElement("div");
-popup.setAttribute("class", popupName);
+popup.setAttribute("id", popupName);
 popup.setAttribute(
   "style",
   `position: fixed !important; 
@@ -8,6 +8,7 @@ popup.setAttribute(
   right: 0 !important;
   left: 0 !important;
   top: 0 !important;
+  z-index: 9999999999999;
   pointer-events: none;
   `
 );
@@ -32,21 +33,112 @@ function getAllText() {
         body: JSON.stringify({ query: current }),
       });
       const data = await response.json();
-      console.log(data);
       pushNotification(data.response);
     }
   }, 1000);
 }
 
+let squareShow = false;
 function pushNotification(message) {
-  const popup = document.getElementsByClassName(popupName)[0];
   popup.innerHTML = "";
-  popup.insertAdjacentHTML(
-    "beforeend",
+  const circleName = generatePopupName();
+  if (!message.toLowerCase().includes("no questions found")) {
+    const popup = document.getElementById(popupName);
+    popup.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div id="${circleName}">
+          <img src="../assets/show.png" alt="" />
+      </div>
+      <div>
+          <textarea disabled>${message}</textarea>
+      </div>
+  
+      <style>
+  
+          #${circleName} {
+              width: 50px !important;
+              height: 50px !important;
+              background-color: inherit;
+              border-radius: 50px;
+              position: absolute;
+              bottom: 20px;
+              right: 20px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              box-shadow: 0px 0px 5px #C80000;
+              color: #C80000;
+              z-index: 1;
+              opacity: 0.5;
+              cursor: pointer;
+              pointer-events: all;
+          }
+  
+          #${circleName}:hover {
+              background-color: #C80000 !important;
+              box-shadow: 0px 0px 10px black;
+              opacity: 1;
+              color: white;
+          }
+  
+          #${circleName} + div {
+              position: absolute;
+              bottom: 50px;
+              right: 50px;
+              width: fit-content;
+              height: fit-content;
+              border-radius: 10px;
+              background-color: white;
+              border: solid 1px #C80000;
+              opacity: 0.3;
+              direction: rtl;
+              padding: 3px;
+              pointer-events: all;
+              cursor: default;
+              display: ${squareShow ? "inline" : "none"};
+          }
+  
+          #${circleName} + div:hover {
+              opacity: 1;
+          }
+  
+          #${circleName} + div > textarea {
+              text-align: end;
+              resize: none;
+              padding: 10px;
+              background-color: inherit;
+              border: none;
+              border-radius: 10px;
+              color: black;
+              width: 300px;
+              height: 100px;
+              overflow-y: auto;
+              font-size: medium;
+          }
+  
+          ::-webkit-scrollbar {
+              background-color: inherit;
+              border-radius: 20px;
+              width: 10px;
+          }
+  
+          ::-webkit-scrollbar-thumb {
+              background-color: #C80000;
+              border-radius: 20px;
+          }
+  
+      </style>
     `
-    <h1>${message}</h1>
-  `
-  );
+    );
+
+    document.getElementById(circleName).addEventListener("click", () => {
+      const square = document.querySelector(`#${circleName} + div`);
+      if (squareShow) square.style.display = "none";
+      else square.style.display = "inline";
+      squareShow = !squareShow;
+    });
+  }
 }
 
 function generatePopupName() {
