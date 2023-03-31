@@ -8,7 +8,7 @@ popup.setAttribute(
   right: 0 !important;
   left: 0 !important;
   top: 0 !important;
-  z-index: 9999999999999;
+  z-index: 9999999999999 !important;
   pointer-events: none;
   `
 );
@@ -48,7 +48,8 @@ function pushNotification(message) {
       "beforeend",
       `
       <div id="${circleName}">
-          <img src="../assets/show.png" alt="" />
+        <i class="fa-solid fa-eye"></i>
+        <i class="fa-solid fa-eye-slash"></i>
       </div>
       <div>
           <textarea disabled>${message}</textarea>
@@ -80,12 +81,29 @@ function pushNotification(message) {
               box-shadow: 0px 0px 10px black;
               opacity: 1;
               color: white;
+              z-index: 3;
+          }
+
+          #${circleName}:active {
+            background-color: black !important;
+            box-shadow: none;
+            opacity: 1;
+            color: white;
+            z-index: 3;
+          }
+
+          #${circleName} > i:nth-child(1) {
+            display: ${squareShow ? "inline" : "none"}
+          }
+
+          #${circleName} > i:nth-child(2) {
+            display: ${!squareShow ? "inline" : "none"}
           }
   
           #${circleName} + div {
               position: absolute;
-              bottom: 50px;
-              right: 50px;
+              bottom: 50px !important;
+              right: 50px !important;
               width: fit-content;
               height: fit-content;
               border-radius: 10px;
@@ -101,6 +119,7 @@ function pushNotification(message) {
   
           #${circleName} + div:hover {
               opacity: 1;
+              z-index: 2;
           }
   
           #${circleName} + div > textarea {
@@ -111,19 +130,19 @@ function pushNotification(message) {
               border: none;
               border-radius: 10px;
               color: black;
-              width: 300px;
-              height: 100px;
+              width: 300px !important;
+              height: 100px !important;
               overflow-y: auto;
               font-size: medium;
           }
   
-          ::-webkit-scrollbar {
+          #${circleName} + div::-webkit-scrollbar {
               background-color: inherit;
               border-radius: 20px;
               width: 10px;
           }
   
-          ::-webkit-scrollbar-thumb {
+          #${circleName} + div::-webkit-scrollbar-thumb {
               background-color: #C80000;
               border-radius: 20px;
           }
@@ -134,8 +153,23 @@ function pushNotification(message) {
 
     document.getElementById(circleName).addEventListener("click", () => {
       const square = document.querySelector(`#${circleName} + div`);
-      if (squareShow) square.style.display = "none";
-      else square.style.display = "inline";
+      if (squareShow) {
+        square.style.display = "none";
+        document.querySelector(
+          `#${circleName} > i:nth-child(1)`
+        ).style.display = "none";
+        document.querySelector(
+          `#${circleName} > i:nth-child(2)`
+        ).style.display = "inline";
+      } else {
+        square.style.display = "inline";
+        document.querySelector(
+          `#${circleName} > i:nth-child(2)`
+        ).style.display = "none";
+        document.querySelector(
+          `#${circleName} > i:nth-child(1)`
+        ).style.display = "inline";
+      }
       squareShow = !squareShow;
     });
   }
