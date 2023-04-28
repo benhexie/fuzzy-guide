@@ -47,14 +47,6 @@ function pushNotification(message) {
     popup.insertAdjacentHTML(
       "beforeend",
       `
-      <div id="${circleName}">
-        <i class="fa-solid fa-eye"></i>
-        <i class="fa-solid fa-eye-slash"></i>
-      </div>
-      <div>
-          <textarea disabled>${message}</textarea>
-      </div>
-  
       <style>
   
           #${circleName} {
@@ -152,6 +144,14 @@ function pushNotification(message) {
           }
   
       </style>
+
+      <div id="${circleName}">
+        <i class="fa-solid fa-eye"></i>
+        <i class="fa-solid fa-eye-slash"></i>
+      </div>
+      <div>
+          <textarea disabled>${message}</textarea>
+      </div>
     `
     );
 
