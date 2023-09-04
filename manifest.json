@@ -19,7 +19,9 @@
             "matches": ["<all_urls>"],
             "exclude_matches": [
                 "*://stackoverflow.com/*",
-                "*://mail.google.com/*"
+                "*://mail.google.com/*",
+                "*://fuzzyguide.netlify.app/*",
+                "*://fuzzyguide.onrender.com/*"
             ],
             "js": [
                 "scripts/content.js",

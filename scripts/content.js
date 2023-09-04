@@ -16,9 +16,8 @@ document.body.appendChild(popup);
 
 function getAllText() {
   let previous = "";
-  let n = 1;
   setInterval(async () => {
-    const current = document.body.innerText;
+    const current = document.body?.innerText;
     const previousMod = previous.split(/[0-9]+ *:[0-9]+ *:*[0-9]* */).join();
     const currentMod = current.split(/[0-9]+:[0-9]+:*[0-9]*/).join();
     if (previousMod !== currentMod) {
@@ -50,7 +49,7 @@ function pushNotification(message) {
         <i class="fa-solid fa-eye"></i>
         <i class="fa-solid fa-eye-slash"></i>
       </div>
-      <div>
+      <div style="display: ${squareShow ? "inline" : "none"};">
           <textarea disabled>${message}</textarea>
       </div>`
     );
