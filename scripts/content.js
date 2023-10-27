@@ -1,3 +1,4 @@
+let notificationText= "";
 const popupName = generateName();
 const circleName = generateName();
 const popup = document.createElement("div");
@@ -17,13 +18,15 @@ document.body.appendChild(popup);
 function getAllText() {
   let previous = "";
   setInterval(async () => {
+    const escapedNotificationText = notificationText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    const re = new RegExp(`[0-9]+ *:[0-9]+ *:*[0-9]* *|${escapedNotificationText}`);
     const current = document.body?.innerText;
-    const previousMod = previous.split(/[0-9]+ *:[0-9]+ *:*[0-9]* */).join();
-    const currentMod = current.split(/[0-9]+:[0-9]+:*[0-9]*/).join();
+    const previousMod = previous.split(re).join();
+    const currentMod = current.split(re).join();
     if (previousMod !== currentMod) {
       previous = current;
       try {
-        const response = await fetch("http://127.0.0.1:80/answer", {
+        const response = await fetch("http://127.0.0.1:5000/answer", {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -41,7 +44,8 @@ function getAllText() {
 let squareShow = false;
 function pushNotification(message) {
   popup.innerHTML = "";
-  if (!/no question found/i.test(message.toLowerCase())) {
+  if (!/no question found/i.test(message)) {
+    notificationText = message;
     const popup = document.getElementById(popupName);
     popup.insertAdjacentHTML(
       "beforeend",
