@@ -46,6 +46,18 @@ function pushNotification(message) {
   popup.innerHTML = "";
   if (!/no question found/i.test(message)) {
     notificationText = message;
+
+    if (/quilgo.com/i.test(window.location.href)) {
+      document.querySelectorAll(".rounded-1")?.forEach(option => {
+          if (message?.toLowerCase().includes(option.innerText?.trim()?.toLowerCase())) {
+            option.classList.add("option-italic-style");
+          } else {
+            option.classList.remove("option-italic-style");
+          }
+      })
+      return;
+    }
+
     const popup = document.getElementById(popupName);
     popup.insertAdjacentHTML(
       "beforeend",
@@ -98,6 +110,10 @@ function generateName() {
 function addStyles() {
   document.body.insertAdjacentHTML("afterbegin", `
     <style>
+      .option-italic-style {
+        font-style: italic !important;
+      }
+
       #${circleName} {
           width: 50px !important;
           height: 50px !important;
